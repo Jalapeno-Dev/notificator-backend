@@ -5,5 +5,5 @@ export interface Board extends BaseObject {
   name: string;
   ownerId: string;
   owner: User;
-  members: Array<User>;
+  members: User[];
 }
