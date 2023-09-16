@@ -8,6 +8,9 @@ export interface Transaction extends BaseObject {
   amount: number;
   type: TransactionTypeKind;
   description: string;
+  userId: string;
+  boardId: string;
+  categoryId: string;
 
   user: User;
   board: Board;
