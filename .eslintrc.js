@@ -13,4 +13,7 @@ module.exports = {
     jest: true,
   },
   ignorePatterns: [".eslintrc.js"],
+  rules: {
+    "@typescript-eslint/no-extraneous-class": "off",
+  }
 };
