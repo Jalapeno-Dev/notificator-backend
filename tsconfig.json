@@ -14,6 +14,12 @@
     "skipLibCheck": true,
     "strict": true,
     "paths": {
+      "@nb/*": [
+        "src/*"
+      ],
+      "@nb": [
+        "src"
+      ],
       "@nb/domain/*": [
         "src/domain/*"
       ],
@@ -37,6 +43,12 @@
       ],
       "@nb/presentation": [
         "src/presentation"
+      ],
+      "@nb/modules/*": [
+        "src/modules/*"
+      ],
+      "@nb/modules": [
+        "src/modules"
       ]
     }
   }
