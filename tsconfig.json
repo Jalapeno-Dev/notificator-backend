@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "paths": {
+      "@nb/*": [
+        "src/*"
+      ],
+      "@nb": [
+        "src"
+      ],
+      "@nb/domain/*": [
+        "src/domain/*"
+      ],
+      "@nb/domain": [
+        "src/domain"
+      ],
+      "@nb/infrastructure/*": [
+        "src/infrastructure/*"
+      ],
+      "@nb/infrastructure": [
+        "src/infrastructure"
+      ],
+      "@nb/application/*": [
+        "src/application/*"
+      ],
+      "@nb/application": [
+        "src/application"
+      ],
+      "@nb/presentation/*": [
+        "src/presentation/*"
+      ],
+      "@nb/presentation": [
+        "src/presentation"
+      ],
+      "@nb/modules/*": [
+        "src/modules/*"
+      ],
+      "@nb/modules": [
+        "src/modules"
+      ]
+    }
+  }
+}
