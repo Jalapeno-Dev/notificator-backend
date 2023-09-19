@@ -4,6 +4,7 @@ import { GetHelloController } from "@nb/presentation/http/get-hello/get-hello.co
 
 @Module({
   controllers: [GetHelloController],
-  providers: [GetHelloService],
+  providers: [{ provide: "GetHelloServiceImpl", useClass: GetHelloService }],
 })
-export class GetHelloModule {}
+export class GetHelloModule {
+}

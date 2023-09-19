@@ -1,12 +1,15 @@
-import { Controller, Get } from "@nestjs/common";
-import { GetHelloService } from "@nb/application/features/get-hello/get-hello.service";
+import { Controller, Get, Inject } from "@nestjs/common";
+import { GetHelloFeatureInterface } from "@nb/domain/interfaces/features/get-hello/get-hello-feature.interface";
 
 @Controller()
 export class GetHelloController {
-  constructor(private readonly getHelloService: GetHelloService) {}
+  constructor(
+    @Inject("GetHelloServiceImpl")
+    private readonly getHelloService: GetHelloFeatureInterface) {
+  }
 
   @Get()
-  getHello(): string {
+  async getHello(): Promise<string> {
     return this.getHelloService.getHello();
   }
 }
