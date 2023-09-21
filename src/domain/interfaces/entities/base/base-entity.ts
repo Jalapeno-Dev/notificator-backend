@@ -1,4 +1,4 @@
-export interface BaseObject {
+export interface BaseEntity {
   readonly id: string;
   readonly createdAt: string;
   updatedAt: string;
