@@ -1,11 +1,11 @@
 import { BaseEntity } from "@nb/domain/interfaces/entities/base/base-entity";
 import { CategoryItem } from "@nb/domain/interfaces/entities/category-items/category-item";
-import { User } from "@nb/domain/interfaces/entities/users/user";
+import { Board } from "@nb/domain/interfaces/entities/boards/board";
 
 export interface Category extends BaseEntity {
   name: string;
-  userId: string;
+  boardId: string;
 
-  user?: User;
+  board?: Board;
   items?: CategoryItem[];
 }
