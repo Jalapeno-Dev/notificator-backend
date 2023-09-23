@@ -6,5 +6,5 @@ export interface CategoryItem extends BaseEntity {
   categoryId: string;
   description: string;
 
-  category: Category;
+  category?: Category;
 }

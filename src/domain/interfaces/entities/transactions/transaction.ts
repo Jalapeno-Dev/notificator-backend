@@ -11,7 +11,7 @@ export interface Transaction extends BaseEntity {
   boardId: string;
   itemId: string;
 
-  user: User;
-  board: Board;
-  item: CategoryItem;
+  user?: User;
+  board?: Board;
+  item?: CategoryItem;
 }

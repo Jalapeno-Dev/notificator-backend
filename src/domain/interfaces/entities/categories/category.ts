@@ -3,5 +3,5 @@ import { CategoryItem } from "@nb/domain/interfaces/entities/category-items/cate
 
 export interface Category extends BaseEntity {
   name: string;
-  items: CategoryItem[];
+  items?: CategoryItem[];
 }

@@ -5,6 +5,6 @@ import { Transaction } from "@nb/domain/interfaces/entities/transactions/transac
 export interface User extends BaseEntity {
   email: string;
   passwordHash: string;
-  boards: Board[];
-  transactions: Transaction[];
+  boards?: Board[];
+  transactions?: Transaction[];
 }
