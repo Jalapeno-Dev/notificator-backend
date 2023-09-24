@@ -16,8 +16,8 @@ model Board {
   ownerId String @map("owner_id") @db.Uuid
 
   owner        User          @relation(fields: [ownerId], references: [id])
-  categories   Category[]
   transactions Transaction[]
+  members      BoardMember[]
 
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
@@ -31,8 +31,10 @@ model User {
   email        String @unique
   passwordHash String @map("password_hash")
 
-  boards       Board[]
-  transactions Transaction[]
+  ownedBoards   Board[]
+  transactions  Transaction[]
+  memberships   BoardMember[]
+  categoryItems CategoryItem[]
 
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
@@ -41,12 +43,25 @@ model User {
   @@map("users")
 }
 
-model Category {
+model BoardMember {
   id      String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name    String
   boardId String @map("board_id") @db.Uuid
+  userId  String @map("user_id") @db.Uuid
 
-  board Board          @relation(fields: [boardId], references: [id])
+  board Board @relation(fields: [boardId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("board_members")
+}
+
+model Category {
+  id   String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name String
+
   items CategoryItem[]
 
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
@@ -56,11 +71,25 @@ model Category {
   @@map("categories")
 }
 
+model BoardCategory {
+  id         String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  boardId    String @map("board_id") @db.Uuid
+  categoryId String @map("category_id") @db.Uuid
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("board_categories")
+}
+
 model CategoryItem {
   id          String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   description String
   categoryId  String @map("category_id") @db.Uuid
+  userId      String @map("user_id") @db.Uuid
 
+  user         User          @relation(fields: [userId], references: [id])
   category     Category      @relation(fields: [categoryId], references: [id])
   transactions Transaction[]
 
