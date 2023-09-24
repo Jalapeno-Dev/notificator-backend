@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Board {
+  id      String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name    String
+  ownerId String @map("owner_id") @db.Uuid
+
+  owner        User          @relation(fields: [ownerId], references: [id])
+  categories   Category[]
+  transactions Transaction[]
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("boards")
+}
+
+model User {
+  id           String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email        String @unique
+  passwordHash String @map("password_hash")
+
+  boards       Board[]
+  transactions Transaction[]
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("users")
+}
+
+model Category {
+  id      String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name    String
+  boardId String @map("board_id") @db.Uuid
+
+  board Board          @relation(fields: [boardId], references: [id])
+  items CategoryItem[]
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("categories")
+}
+
+model CategoryItem {
+  id          String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  description String
+  categoryId  String @map("category_id") @db.Uuid
+
+  category     Category      @relation(fields: [categoryId], references: [id])
+  transactions Transaction[]
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("category_items")
+}
+
+model Transaction {
+  id      String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  amount  Float
+  type    TransactionTypeKind
+  userId  String              @map("user_id") @db.Uuid
+  boardId String              @map("board_id") @db.Uuid
+  itemId  String              @map("item_id") @db.Uuid
+
+  user  User         @relation(fields: [userId], references: [id])
+  board Board        @relation(fields: [boardId], references: [id])
+  item  CategoryItem @relation(fields: [itemId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  @@map("transactions")
+}
+
+enum TransactionTypeKind {
+  INCOME
+  EXPENSE
+
+  @@map("transaction_type_kind")
+}
