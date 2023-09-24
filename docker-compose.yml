@@ -1,0 +1,22 @@
+name: notification-boss-dev
+
+volumes:
+  postgres_data:
+
+services:
+  postgres:
+    container_name: nb-postgres
+    image: postgres:15.3-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:${POSTGRES_PORT}
+  redis:
+    container_name: nb-redis
+    image: redis:7.2.1-alpine
+    ports:
+      - 6379:6379
