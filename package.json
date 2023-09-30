@@ -21,10 +21,12 @@
     "prisma": "npx prisma"
   },
   "dependencies": {
+    "@fastify/static": "^6.11.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.1.1",
     "@nestjs/platform-fastify": "^10.2.6",
+    "@nestjs/swagger": "^7.1.12",
     "@prisma/client": "5.3.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
