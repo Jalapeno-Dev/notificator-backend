@@ -7,4 +7,6 @@ export interface IUserRepository {
     email: string,
     passwordHash: string,
   }): Promise<UserModel>;
+
+  countByEmail(email: string): Promise<number>;
 }

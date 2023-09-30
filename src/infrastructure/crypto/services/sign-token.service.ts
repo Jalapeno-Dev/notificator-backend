@@ -1,7 +1,9 @@
 import { JwtService } from "@nestjs/jwt";
 import { ISignTokenService, SIGN_TOKEN_SERVICE } from "@nb/application/crypto/interfaces/sign-token.service";
+import { Injectable } from "@nestjs/common";
 
-class SignTokenService implements ISignTokenService {
+@Injectable()
+class JwtSignTokenService implements ISignTokenService {
   constructor(private readonly jwtService: JwtService) {
   }
 
@@ -15,5 +17,5 @@ class SignTokenService implements ISignTokenService {
 
 export const SignTokenServiceProvider = {
   provide: SIGN_TOKEN_SERVICE,
-  useClass: SignTokenService,
+  useClass: JwtSignTokenService,
 };

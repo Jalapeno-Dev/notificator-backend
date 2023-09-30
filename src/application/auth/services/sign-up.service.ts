@@ -16,9 +16,16 @@ export class SignUpService {
   }
 
   async signUp(params: { email: string, password: string }): Promise<{ token: string }> {
+    const sameEmail = await this.userRepository.countByEmail(params.email);
+
+    if (sameEmail > 0) throw new Error("Email already exists");
+    
     const passwordHash = await this.hashPasswordService.hash(params.password);
+
     const user = await this.userRepository.create({ email: params.email, passwordHash });
+
     const token = await this.signTokenService.sign({ id: user.id });
+
     return { token };
   }
 }
