@@ -4,10 +4,16 @@ import { SignUpService } from "@nb/application/auth/services/sign-up.service";
 import {
   ScryptoHashPasswordProvider,
 } from "@nb/infrastructure/crypto/services/scrypto-hash-password-service";
-import { SignTokenServiceProvider } from "@nb/infrastructure/jwt/sign-token.service";
+import { SignTokenServiceProvider } from "@nb/infrastructure/crypto/services/sign-token.service";
 import { UserRepositoryProvider } from "@nb/dao/repositories/user.repository";
+import { JwtModule } from "@nestjs/jwt";
 
 @Module({
+  imports: [
+    JwtModule.register({
+      secret: "secret",
+    }),
+  ],
   controllers: [
     SignUpController,
   ],
