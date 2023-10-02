@@ -1,8 +1,9 @@
 import { PrismaService } from "@nb/infrastructure/database/prisma/services/prisma.service";
-import { UserMapper } from "@nb/dao/mappers/user.mapper";
+import { UserMapper } from "@nb/dao/prisma/mappers/user.mapper";
 import { UserModel } from "@nb/application/users/models/user.model";
 import { IUserRepository, USER_REPOSITORY } from "@nb/application/users/interfaces/user.repository";
 import { Injectable } from "@nestjs/common";
+import { User } from "@prisma/client";
 
 @Injectable()
 class UserRepository implements IUserRepository {
@@ -12,7 +13,7 @@ class UserRepository implements IUserRepository {
   }
 
   async create(params: { email: string, passwordHash: string }): Promise<UserModel> {
-    const user = await this.prisma.user.create({
+    const user: User = await this.prisma.user.create({
       data: {
         email: params.email,
         passwordHash: params.passwordHash,
@@ -22,8 +23,18 @@ class UserRepository implements IUserRepository {
     return UserMapper.toDomain(user);
   }
 
-  countByEmail(email: string): Promise<number> {
+  async countByEmail(email: string): Promise<number> {
     return this.prisma.user.count({ where: { email } });
+  }
+
+  async findByEmail(email: string): Promise<UserModel | null> {
+    const user: User | null = await this.prisma.user.findFirst({ where: { email } });
+
+    if (!user) {
+      return null;
+    }
+
+    return UserMapper.toDomain(user);
   }
 }
 

@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { SignUpRequestDto } from "@nb/presentation/rest/auth/sign-up/dtos/sign-up-request.dto";
-import { SignedTokenResponseDto } from "@nb/presentation/rest/auth/sign-up/dtos/signed-token-response.dto";
+import { SignedTokenResponseDto } from "@nb/presentation/rest/auth/common/dtos/signed-token-response.dto";
 import { SignUpService } from "@nb/application/auth/services/sign-up.service";
 import { ApiCreatedResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 

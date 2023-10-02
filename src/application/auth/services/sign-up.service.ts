@@ -19,7 +19,7 @@ export class SignUpService {
     const sameEmail = await this.userRepository.countByEmail(params.email);
 
     if (sameEmail > 0) throw new Error("Email already exists");
-    
+
     const passwordHash = await this.hashPasswordService.hash(params.password);
 
     const user = await this.userRepository.create({ email: params.email, passwordHash });
