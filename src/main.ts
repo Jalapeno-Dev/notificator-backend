@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription("The Notification Boss API description")
     .setVersion("0.0.1")
     .addServer("http://localhost:3000")
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);

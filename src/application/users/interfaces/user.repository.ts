@@ -8,6 +8,8 @@ export interface IUserRepository {
     passwordHash: string,
   }): Promise<UserModel>;
 
+  findById(id: string): Promise<UserModel | null>;
+
   findByEmail(email: string): Promise<UserModel | null>;
 
   countByEmail(email: string): Promise<number>;

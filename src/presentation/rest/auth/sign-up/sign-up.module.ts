@@ -3,15 +3,12 @@ import { SignUpController } from "@nb/presentation/rest/auth/sign-up/sign-up.con
 import { SignUpService } from "@nb/application/auth/services/sign-up.service";
 import {
   ScryptoHashPasswordProvider,
-} from "@nb/infrastructure/crypto/services/scrypto-hash-password.service";
-import { SignTokenServiceProvider } from "@nb/infrastructure/crypto/services/sign-token.service";
+} from "@nb/infrastructure/scrypt/services/scrypto-hash-password.service";
+import { SignTokenServiceProvider } from "@nb/infrastructure/jwt/services/sign-token.service";
 import { UserRepositoryProvider } from "@nb/dao/prisma/repositories/user.repository";
-import { JwtModule } from "@nestjs/jwt";
 
 @Module({
-  imports: [JwtModule.register({
-    secret: "secret",
-  })],
+  imports: [],
   controllers: [
     SignUpController,
   ],
