@@ -21,13 +21,12 @@ export class JwtAuthGuard implements CanActivate {
 
     try {
       const payload: { id: string } = await this.jwtService.verifyAsync(token);
-      const user = await this.usersRepository.findById(payload.id);
 
-      if (!user) {
+      if (!payload.id) {
         return false;
       }
 
-      request.user = user;
+      request.user = payload;
       return true;
     } catch (e) {
       return false;

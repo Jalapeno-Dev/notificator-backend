@@ -1,5 +1,5 @@
-import { PrismaService } from "@nb/infrastructure/database/prisma/services/prisma.service";
-import { UserMapper } from "@nb/dao/prisma/mappers/user.mapper";
+import { PrismaService } from "@nb/infrastructure/database/prisma/internal/services/prisma.service";
+import { UserMapper } from "@nb/infrastructure/database/prisma/mappers/user.mapper";
 import { UserModel } from "@nb/application/users/models/user.model";
 import { IUserRepository, USER_REPOSITORY } from "@nb/application/users/interfaces/user.repository";
 import { Injectable } from "@nestjs/common";
