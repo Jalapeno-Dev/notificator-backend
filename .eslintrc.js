@@ -6,7 +6,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint/eslint-plugin"],
-  extends: ["plugin:@typescript-eslint/strict-type-checked", "plugin:@typescript-eslint/stylistic-type-checked"],
+  extends: ["plugin:@typescript-eslint/strict", "plugin:@typescript-eslint/stylistic"],
   root: true,
   env: {
     node: true,
@@ -15,5 +15,5 @@ module.exports = {
   ignorePatterns: [".eslintrc.js"],
   rules: {
     "@typescript-eslint/no-extraneous-class": "off",
-  }
+  },
 };

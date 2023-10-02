@@ -19,36 +19,6 @@
       ],
       "@nb": [
         "src"
-      ],
-      "@nb/domain/*": [
-        "src/domain/*"
-      ],
-      "@nb/domain": [
-        "src/domain"
-      ],
-      "@nb/infrastructure/*": [
-        "src/infrastructure/*"
-      ],
-      "@nb/infrastructure": [
-        "src/infrastructure"
-      ],
-      "@nb/application/*": [
-        "src/application/*"
-      ],
-      "@nb/application": [
-        "src/application"
-      ],
-      "@nb/presentation/*": [
-        "src/presentation/*"
-      ],
-      "@nb/presentation": [
-        "src/presentation"
-      ],
-      "@nb/modules/*": [
-        "src/modules/*"
-      ],
-      "@nb/modules": [
-        "src/modules"
       ]
     }
   }
