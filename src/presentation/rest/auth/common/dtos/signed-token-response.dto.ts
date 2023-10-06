@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class SignedTokenResponseDto {
-  @ApiProperty()
+  @ApiProperty({ type: String })
   token!: string;
 }
