@@ -4,6 +4,7 @@ import {
 } from "@nb/application/boards/interfaces/board-members.repository";
 import { PrismaService } from "@nb/infrastructure/database/prisma/internal/services/prisma.service";
 import { Injectable } from "@nestjs/common";
+import { UserModel } from "@nb/application/users/models/user.model";
 
 @Injectable()
 class BoardMembersRepository implements IBoardMembersRepository {
@@ -21,6 +22,23 @@ class BoardMembersRepository implements IBoardMembersRepository {
     });
 
     return count > 0;
+  }
+
+  async findByBoardId(boardId: string): Promise<UserModel[]> {
+    try {
+      const boardMembers = await this.prisma.boardMember.findMany({
+        where: {
+          boardId,
+        },
+        include: {
+          user: true,
+        },
+      });
+
+      return boardMembers.map(boardMember => boardMember.user);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
