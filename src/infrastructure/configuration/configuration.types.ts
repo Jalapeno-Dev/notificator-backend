@@ -10,6 +10,7 @@ export const environmentSchema = z.object({
   POSTGRES_PASSWORD: z.string(),
   POSTGRES_DB: z.string(),
   POSTGRES_SCHEMA: z.string(),
+  REDIS_URL: z.string(),
 }).required();
 
 export type EnvironmentSchema = z.infer<typeof environmentSchema>;
