@@ -10,11 +10,16 @@ import { Logger } from "@nestjs/common";
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(MainModule, new FastifyAdapter());
 
+  const configService: ConfigService<EnvironmentSchema> = app.get<ConfigService<EnvironmentSchema>>(ConfigService);
+
+  const host = configService.getOrThrow("HOST", { infer: true });
+  const port = configService.getOrThrow("PORT", { infer: true });
+
   const config = new DocumentBuilder()
     .setTitle("Notification Boss API")
     .setDescription("The Notification Boss API description")
     .setVersion("0.0.1")
-    .addServer("http://localhost:3000")
+    .addServer(`http://${host}:${port}`)
     .addBearerAuth()
     .build();
 
@@ -24,12 +29,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
 
-
-  const configService: ConfigService<EnvironmentSchema> = app.get<ConfigService<EnvironmentSchema>>(ConfigService);
-
-  const host = configService.getOrThrow("HOST", { infer: true });
-  const port = configService.getOrThrow("PORT", { infer: true });
-  
   const logger: Logger = new Logger("NestApplication");
 
   await app.listen(port, host, (err, address) => {
