@@ -8,4 +8,6 @@ export interface IBoardRepository {
   findById(id: string): Promise<BoardModel | null>;
 
   findAvailableByUserId(userId: string): Promise<BoardModel[]>;
+
+  updateById(id: string, updates: { name: string }): Promise<BoardModel>;
 }

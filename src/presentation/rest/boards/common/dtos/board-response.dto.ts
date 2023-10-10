@@ -11,6 +11,7 @@ export class BoardResponseDto {
   createdAt!: Date;
   @ApiProperty()
   updatedAt!: Date;
-  @ApiProperty({ nullable: true })
+
+  @ApiProperty({type: 'string', format: 'date-time', nullable: true })
   deletedAt!: Date | null;
 }

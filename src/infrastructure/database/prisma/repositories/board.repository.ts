@@ -51,6 +51,18 @@ class BoardRepository implements IBoardRepository {
 
     return boards.map(BoardMapper.toDomain);
   }
+
+  async updateById(id: string, updates: { name: string }): Promise<BoardModel> {
+    const board: Board = await this.prisma.board.update({
+      where: { id },
+      data: {
+        name: updates.name,
+        updatedAt: new Date(),
+      },
+    });
+
+    return BoardMapper.toDomain(board);
+  }
 }
 
 export const BoardRepositoryProvider: Provider = {
