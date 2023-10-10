@@ -7,6 +7,7 @@ import { ScryptoModule } from "@nb/infrastructure/scrypt/scrypto.module";
 import { GetBoardByIdModule } from "@nb/presentation/rest/boards/get-board-by-id/get-board-by-id.module";
 import { CreateBoardModule } from "@nb/presentation/rest/boards/create-board/create-board.module";
 import { GetBoardsModule } from "@nb/presentation/rest/boards/get-boards/get-boards.module";
+import { GetBoardMembersModule } from "@nb/presentation/rest/boards/get-board-members/get-board-members.module";
 import { UpdateBoardModule } from "@nb/presentation/rest/boards/update-board/update-board.module";
 import { DeleteBoardModule } from "@nb/presentation/rest/boards/delete-board/delete-board.module";
 
@@ -19,6 +20,7 @@ import { DeleteBoardModule } from "@nb/presentation/rest/boards/delete-board/del
     GetBoardsModule,
     GetBoardByIdModule,
     CreateBoardModule,
+    GetBoardMembersModule,
     UpdateBoardModule,
     DeleteBoardModule,
     ExamplesModule,
