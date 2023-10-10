@@ -63,6 +63,11 @@ class BoardRepository implements IBoardRepository {
 
     return BoardMapper.toDomain(board);
   }
+
+  async deleteById(id: string): Promise<{ deleted: boolean }> {
+    await this.prisma.board.delete({ where: { id } });
+    return { deleted: true };
+  }
 }
 
 export const BoardRepositoryProvider: Provider = {
