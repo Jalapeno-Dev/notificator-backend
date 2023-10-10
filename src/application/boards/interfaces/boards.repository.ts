@@ -10,4 +10,6 @@ export interface IBoardRepository {
   findAvailableByUserId(userId: string): Promise<BoardModel[]>;
 
   updateById(id: string, updates: { name: string }): Promise<BoardModel>;
+
+  deleteById(id: string): Promise<{ deleted: boolean }>;
 }
