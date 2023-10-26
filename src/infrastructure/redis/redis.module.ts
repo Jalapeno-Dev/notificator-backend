@@ -1,16 +1,9 @@
 import { Module } from "@nestjs/common";
-import { RedisModule as NestRedisModule } from "nestjs-redis";
-import { RedisConfigFactory } from "@nb/infrastructure/redis/factories/redis-config.factory";
+import { RedisService } from "@nb/infrastructure/redis/services/redis.service";
 
 @Module({
-  imports: [
-    NestRedisModule.forRootAsync(RedisConfigFactory),
-  ],
+  providers: [RedisService],
+  exports: [RedisService],
 })
-class RedisModuleCls {
+export class RedisModule {
 }
-
-export const RedisModule = {
-  global: true,
-  module: RedisModuleCls,
-};
